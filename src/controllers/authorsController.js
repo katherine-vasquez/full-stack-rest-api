@@ -32,10 +32,10 @@ const createAuthor = async (req, res, next) => {
     const { name, email, bio } = req.body;
 
     if (!name || !email) {
-  return res.status(400).json({
-    message: "Name y email son obligatorios"
-  });
-}
+      return res.status(400).json({
+        message: "Name y email son obligatorios"
+      });
+    }
 
     const newAuthor = await authorsService.createAuthor({
       name,
@@ -43,8 +43,16 @@ const createAuthor = async (req, res, next) => {
       bio
     });
 
-    res.status(201).json(newAuthor);
+    return res.status(201).json(newAuthor);
+
   } catch (error) {
+    // 🔴 manejo de email duplicado
+    if (error.code === "23505") {
+      return res.status(400).json({
+        message: "El email ya existe"
+      });
+    }
+
     next(error);
   }
 };
