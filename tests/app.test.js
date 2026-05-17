@@ -1,5 +1,10 @@
 const request = require("supertest");
 const app = require("../src/app");
+const pool = require("../src/db/config");
+
+// ======================================================
+// AUTHORS API
+// ======================================================
 
 describe("AUTHORS API", () => {
 
@@ -9,6 +14,10 @@ describe("AUTHORS API", () => {
     expect(res.statusCode).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
   });
+
+  // =========================
+  // CREATE AUTHOR
+  // =========================
 
   test("POST /authors - should create author and return 201", async () => {
     const uniqueEmail = `test_${Date.now()}@mail.com`;
@@ -24,6 +33,10 @@ describe("AUTHORS API", () => {
     expect(res.body.email).toBe(uniqueEmail);
   });
 
+  // =========================
+  // VALIDATION EMPTY FIELDS
+  // =========================
+
   test("POST /authors - should return 400 if missing fields", async () => {
     const res = await request(app).post("/authors").send({
       name: ""
@@ -32,6 +45,10 @@ describe("AUTHORS API", () => {
     expect(res.statusCode).toBe(400);
     expect(res.body.message).toBe("Name y email son obligatorios");
   });
+
+  // =========================
+  // VALIDATION DUPLICATE EMAIL
+  // =========================
 
   test("POST /authors - should fail if email already exists", async () => {
     const res = await request(app).post("/authors").send({
@@ -44,13 +61,81 @@ describe("AUTHORS API", () => {
     expect(res.body.message).toBe("El email ya existe");
   });
 
+  // =========================
+  // UPDATE AUTHOR
+  // =========================
+
+    test("PUT /authors/:id should update author", async () => {
+
+    // crear autor
+    const createRes = await request(app)
+      .post("/authors")
+      .send({
+        name: "Autor Update",
+        email: `update_${Date.now()}@mail.com`,
+        bio: "bio original"
+      });
+
+    const authorId = createRes.body.id;
+
+    // actualizar
+    const res = await request(app)
+      .put(`/authors/${authorId}`)
+      .send({
+        name: "Autor Actualizado",
+        email: `updated_${Date.now()}@mail.com`,
+        bio: "bio actualizada"
+      });
+
+    expect(res.statusCode).toBe(200);
+
+    expect(res.body.name)
+      .toBe("Autor Actualizado");
+
+  });
+
+  // =========================
+  // DELETE AUTHOR
+  // =========================
+  test("DELETE /authors/:id should delete author", async () => {
+
+    // crear autor
+    const createRes = await request(app)
+      .post("/authors")
+      .send({
+        name: "Autor Delete",
+        email: `delete_${Date.now()}@mail.com`,
+        bio: "delete test"
+      });
+
+    const authorId = createRes.body.id;
+
+    // eliminar
+    const res = await request(app)
+      .delete(`/authors/${authorId}`);
+
+    expect(res.statusCode).toBe(200);
+
+  });
+
+
   afterAll(async () => {
     await new Promise(resolve => setTimeout(resolve, 500));
   });
 
 });
 
+// ======================================================
+// POSTS API
+// ======================================================
+
+
 describe("POSTS API", () => {
+  
+  // =========================
+  // GET ALL POSTS
+  // =========================
+
     test("GET /posts should return 200 and array", async () => {
   const res = await request(app).get("/posts");
 
@@ -58,26 +143,38 @@ describe("POSTS API", () => {
   expect(Array.isArray(res.body)).toBe(true);
 });
 
+  // =========================
+  // GET POST BY ID
+  // =========================
+
 test("GET /posts/:id should return a post", async () => {
-  const res = await request(app).get("/posts/6");
+  const res = await request(app).get("/posts/1");
 
   expect(res.statusCode).toBe(200);
   expect(res.body).toHaveProperty("id");
-  expect(res.body.id).toBe(6);
+  expect(res.body.id).toBe(1);
 });
 
+  // =========================
+  // GET POSTS BY AUTHOR
+  // =========================
+
 test("GET /posts/author/:id should return posts by author", async () => {
-  const res = await request(app).get("/posts/author/2");
+  const res = await request(app).get("/posts/author/1");
 
   expect(res.statusCode).toBe(200);
   expect(Array.isArray(res.body)).toBe(true);
 });
 
+ // =========================
+  // CREATE POST
+  // =========================
+
 test("POST /posts should create a post and return 201", async () => {
   const res = await request(app).post("/posts").send({
     title: "Test Post",
     content: "Contenido del test post",
-    author_id: 2,
+    author_id: 1,
     published: true
   });
 
@@ -85,6 +182,10 @@ test("POST /posts should create a post and return 201", async () => {
   expect(res.body).toHaveProperty("id");
   expect(res.body.title).toBe("Test Post");
 });
+
+  // =========================
+  // VALIDATION POSTS
+  // =========================
 
 test("POST /posts should return 400 if missing fields", async () => {
   const res = await request(app).post("/posts").send({
@@ -94,4 +195,68 @@ test("POST /posts should return 400 if missing fields", async () => {
   expect(res.statusCode).toBe(400);
 });
 
+ // =========================
+  // UPDATE POST
+  // =========================
+  test("PUT /posts/:id should update post", async () => {
+
+    // crear post
+    const createRes = await request(app)
+      .post("/posts")
+      .send({
+        title: "Post Original",
+        content: "contenido original",
+        author_id: 1,
+        published: true
+      });
+
+    const postId = createRes.body.id;
+
+    // actualizar
+    const res = await request(app)
+      .put(`/posts/${postId}`)
+      .send({
+        title: "Post Actualizado",
+        content: "contenido actualizado",
+        author_id: 1,
+        published: false
+      });
+
+    expect(res.statusCode).toBe(200);
+
+    expect(res.body.title)
+      .toBe("Post Actualizado");
+
+  });
+
+  // =========================
+  // DELETE POST
+  // =========================
+  test("DELETE /posts/:id should delete post", async () => {
+
+    // crear post
+    const createRes = await request(app)
+      .post("/posts")
+      .send({
+        title: "Post Delete",
+        content: "contenido delete",
+        author_id: 1,
+        published: true
+      });
+
+    const postId = createRes.body.id;
+
+    // eliminar
+    const res = await request(app)
+      .delete(`/posts/${postId}`);
+
+    expect(res.statusCode).toBe(200);
+
+  });
+
+  
+});
+
+afterAll(async () => {
+  await pool.end();
 });

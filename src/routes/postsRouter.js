@@ -23,11 +23,11 @@ console.log({
 // GET /posts
 router.get("/", getAllPosts);
 
-// GET /posts/:id
-router.get("/:id", getPostById);
-
 // GET /posts/author/:authorId
 router.get("/author/:authorId", getPostsByAuthor);
+
+// GET /posts/:id
+router.get("/:id", getPostById);
 
 // POST /posts
 router.post("/", createPost);
