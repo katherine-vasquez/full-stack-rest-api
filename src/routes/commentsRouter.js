@@ -8,6 +8,13 @@ const {
   createComment
 } = require("../controllers/commentsController");
 
+console.log({
+  getAllComments,
+  getCommentsByPost,
+  createComment
+});
+
+
 // GET ALL COMMENTS
 router.get("/", getAllComments);
 
