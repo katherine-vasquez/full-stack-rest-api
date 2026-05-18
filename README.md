@@ -92,30 +92,37 @@ CRUD authors
 CRUD posts
 CRUD comments
 Validaciones de errores
+
 📌 Funcionalidades
+
 👤 Authors
 Crear autor
 Obtener todos
 Obtener por ID
 Actualizar
 Eliminar
+
 📝 Posts
 CRUD completo
 Relación con authors
+
 💬 Comments
 Crear comentarios
 Obtener comentarios
 Obtener por post
+
 🔐 Validaciones
 name obligatorio (authors)
 email único
 title, content, author_id obligatorios (posts)
 manejo de errores HTTP
+
 🧠 Arquitectura
 Routes → endpoints
 Controllers → lógica HTTP
 Services → lógica SQL
 DB → conexión PostgreSQL
+
 🤖 Uso de IA
 
 Se utilizó IA (ChatGPT) como apoyo para:
@@ -124,10 +131,10 @@ depuración de errores
 estructura de tests
 optimización de SQL
 revisión de arquitectura
+
 🏆 Estado del proyecto
 
 ✔ API funcional
 ✔ Tests pasando
 ✔ Swagger activo
 ✔ Deploy en Railway
-✔ Listo para entrega
