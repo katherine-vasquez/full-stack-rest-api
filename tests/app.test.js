@@ -114,7 +114,7 @@ describe("AUTHORS API", () => {
     const res = await request(app)
       .delete(`/authors/${authorId}`);
 
-    expect(res.statusCode).toBe(200);
+    expect(res.statusCode).toBe(204);
 
   });
 
@@ -250,7 +250,7 @@ test("POST /posts should return 400 if missing fields", async () => {
     const res = await request(app)
       .delete(`/posts/${postId}`);
 
-    expect(res.statusCode).toBe(200);
+    expect(res.statusCode).toBe(204);
 
   });
 
