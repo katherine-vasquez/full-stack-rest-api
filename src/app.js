@@ -7,8 +7,7 @@ const swaggerSpecs = require("./config/swagger");
 
 const authorsRouter = require("./routes/authorsRouter");
 const postsRouter = require("./routes/postsRouter");
-
-console.log(authorsRouter);
+const commentsRouter = require("./routes/commentsRouter");
 
 const app = express();
 
@@ -17,6 +16,7 @@ app.use(express.json());
 
 app.use("/authors", authorsRouter);
 app.use("/posts", postsRouter);
+app.use("/comments", commentsRouter);
 
 app.use(
   "/api-docs",
