@@ -136,10 +136,7 @@ const deletePost = async (req, res, next) => {
       });
     }
 
-    res.status(200).json({
-      message: "Post eliminado correctamente",
-      post: deletedPost
-    });
+return res.status(204).send();
 
   } catch (error) {
     next(error);
