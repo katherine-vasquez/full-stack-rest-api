@@ -26,4 +26,15 @@ app.use(
   })
 );
 
+// =========================
+// ERROR HANDLER (500)
+// =========================
+app.use((err, req, res, next) => {
+  console.error(err); // para debug
+
+  res.status(500).json({
+    message: "Internal Server Error"
+  });
+});
+
 module.exports = app;

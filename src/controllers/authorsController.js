@@ -89,10 +89,8 @@ const deleteAuthor = async (req, res, next) => {
       return res.status(404).json({ message: "Author no encontrado" });
     }
 
-    res.status(200).json({
-      message: "Author eliminado correctamente",
-      author: deletedAuthor
-    });
+return res.status(204).send();
+
   } catch (error) {
     next(error);
   }
