@@ -130,7 +130,7 @@ const swaggerDocument = {
         ],
 
         responses: {
-          200: {
+          204: {
             description: "Autor eliminado"
           },
 
@@ -258,7 +258,7 @@ const swaggerDocument = {
         ],
 
         responses: {
-          200: {
+          204: {
             description: "Post eliminado"
           },
 
@@ -292,6 +292,70 @@ const swaggerDocument = {
 
           404: {
             description: "Autor no encontrado"
+          }
+        }
+      }
+    },
+
+    // =========================
+    // COMMENTS
+    // =========================
+    "/comments": {
+
+      get: {
+        summary: "Obtener todos los comentarios",
+
+        responses: {
+          200: {
+            description: "Lista de comentarios"
+          }
+        }
+      },
+
+      post: {
+        summary: "Crear un comentario",
+
+        requestBody: {
+          required: true,
+
+          content: {
+            "application/json": {
+              example: {
+                post_id: 1,
+                author_id: 1,
+                content: "Excelente artículo"
+              }
+            }
+          }
+        },
+
+        responses: {
+          201: {
+            description: "Comentario creado"
+          }
+        }
+      }
+    },
+
+    // =========================
+    // COMMENTS BY POST
+    // =========================
+    "/comments/post/{postId}": {
+
+      get: {
+        summary: "Obtener comentarios por post ID",
+
+        parameters: [
+          {
+            name: "postId",
+            in: "path",
+            required: true
+          }
+        ],
+
+        responses: {
+          200: {
+            description: "Lista de comentarios del post"
           }
         }
       }
