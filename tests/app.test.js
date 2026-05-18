@@ -260,3 +260,64 @@ test("POST /posts should return 400 if missing fields", async () => {
 afterAll(async () => {
   await pool.end();
 });
+
+// ======================================================
+// COMMENTS API
+// ======================================================
+
+describe("COMMENTS API", () => {
+
+  // =========================
+  // GET ALL COMMENTS
+  // =========================
+  test("GET /comments should return 200 and array", async () => {
+    const res = await request(app).get("/comments");
+
+    expect(res.statusCode).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+  });
+
+  // =========================
+  // GET COMMENTS BY POST
+  // =========================
+  test("GET /comments/post/:postId should return comments", async () => {
+    const res = await request(app).get("/comments/post/1");
+
+    expect(res.statusCode).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+  });
+
+  // =========================
+  // CREATE COMMENT
+  // =========================
+  test("POST /comments should create a comment and return 201", async () => {
+    const res = await request(app)
+      .post("/comments")
+      .send({
+        post_id: 1,
+        author_id: 1,
+        content: "Comentario de test automatizado"
+      });
+
+    expect(res.statusCode).toBe(201);
+    expect(res.body).toHaveProperty("id");
+    expect(res.body.content).toBe("Comentario de test automatizado");
+  });
+
+  // =========================
+  // VALIDATION TEST
+  // =========================
+  test("POST /comments should return 400 if missing fields", async () => {
+    const res = await request(app)
+      .post("/comments")
+      .send({
+        content: ""
+      });
+
+    expect(res.statusCode).toBe(400);
+    expect(res.body.message).toBe(
+      "post_id, author_id y content son obligatorios"
+    );
+  });
+
+});
