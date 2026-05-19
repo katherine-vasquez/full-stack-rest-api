@@ -16,3 +16,11 @@ INSERT INTO posts (title, content, author_id, published) VALUES
  ('Manejo de errores en Express', 'El manejo apropiado de errores...', 3, false),
 
  ('Async/Await explicado', 'Las promesas simplifican el código asíncrono...', 1, false);
+
+INSERT INTO comments (post_id, author_id, content)
+VALUES
+(1, 1, 'Excelente artículo sobre Node.js'),
+(1, 2, 'Muy buen contenido, gracias!'),
+(2, 3, 'Esto me ayudó a entender SQL mejor'),
+(1, 2, 'Este es un comentario de prueba desde POST'),
+(1, 1, 'Comentario desde Swagger');

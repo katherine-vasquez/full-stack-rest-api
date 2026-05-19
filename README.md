@@ -147,10 +147,16 @@ Durante el desarrollo del proyecto se utilizó IA (ChatGPT) como herramienta de 
 
 la IA ayudó a estructurar y mejorar el README del proyecto para cumplir con los requisitos de entrega y presentación del repositorio.
 
+📸 Evidencia:
+![IA README](./screenshots/IAPHOTO1.jpg)
+
 
 🔧 Apoyo en depuración de errores
 
 La IA ayudó a identificar y corregir errores en el funcionamiento de la API, mejorando la estabilidad del proyecto.
+
+📸 Evidencia:
+![IA debugging](./screenshots/IAPHOTO2.jpg)
 
 
 📘 OpenAPI (Documentación de la API)
