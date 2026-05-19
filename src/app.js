@@ -9,6 +9,8 @@ const authorsRouter = require("./routes/authorsRouter");
 const postsRouter = require("./routes/postsRouter");
 const commentsRouter = require("./routes/commentsRouter");
 
+const errorHandler = require("./middlewares/errorhandler");
+
 const app = express();
 
 app.use(cors());
