@@ -10,12 +10,23 @@ servers:
 
 paths:
 
+  # =========================
+  # AUTHORS
+  # =========================
   /authors:
     get:
       summary: Obtener todos los autores
       responses:
         "200":
           description: Lista de autores
+          content:
+            application/json:
+              example:
+                - id: 1
+                  name: Ana García
+                  email: ana@email.com
+                  bio: Escritora técnica
+                  created_at: "2026-05-18T20:50:08.697Z"
 
     post:
       summary: Crear un autor
@@ -32,6 +43,9 @@ paths:
                   type: string
                 bio:
                   type: string
+              required:
+                - name
+                - email
       responses:
         "201":
           description: Autor creado
@@ -89,15 +103,25 @@ paths:
       responses:
         "204":
           description: Autor eliminado
-        "404":
-          description: Autor no encontrado
 
+  # =========================
+  # POSTS
+  # =========================
   /posts:
     get:
       summary: Obtener todos los posts
       responses:
         "200":
           description: Lista de posts
+          content:
+            application/json:
+              example:
+                - id: 1
+                  title: Introducción a Node.js
+                  content: Contenido del post
+                  published: true
+                  created_at: "2026-05-18T20:50:08.697Z"
+                  author_name: Ana García
 
     post:
       summary: Crear un post
@@ -116,6 +140,10 @@ paths:
                   type: integer
                 published:
                   type: boolean
+              required:
+                - title
+                - content
+                - author_id
       responses:
         "201":
           description: Post creado
@@ -166,17 +194,9 @@ paths:
 
     delete:
       summary: Eliminar post
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
       responses:
         "204":
           description: Post eliminado
-        "404":
-          description: Post no encontrado
 
   /posts/author/{authorId}:
     get:
@@ -190,18 +210,27 @@ paths:
       responses:
         "200":
           description: Lista de posts del autor
-        "404":
-          description: Autor no encontrado
 
+  # =========================
+  # COMMENTS
+  # =========================
   /comments:
     get:
       summary: Obtener todos los comentarios
       responses:
         "200":
           description: Lista de comentarios
+          content:
+            application/json:
+              example:
+                - id: 1
+                  content: Excelente artículo sobre Node.js
+                  created_at: "2026-05-18T20:50:08.697Z"
+                  author_name: Ana García
+                  post_title: Introducción a Node.js
 
     post:
-      summary: Crear un comentario
+      summary: Crear comentario
       requestBody:
         required: true
         content:
@@ -215,6 +244,10 @@ paths:
                   type: integer
                 content:
                   type: string
+              required:
+                - post_id
+                - author_id
+                - content
       responses:
         "201":
           description: Comentario creado
