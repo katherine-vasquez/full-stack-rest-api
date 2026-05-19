@@ -1,24 +1,25 @@
 # 📌 Blog API – Node.js + Express + PostgreSQL
 
-API REST desarrollada con Node.js, Express y PostgreSQL que simula un sistema tipo JSONPlaceholder con autores, posts y comentarios.
-
-El proyecto incluye CRUD completo, validaciones, tests automatizados, documentación OpenAPI (Swagger) y despliegue en Railway.
+API REST desarrollada con Node.js, Express y PostgreSQL que simula un sistema de blog con autores, posts y comentarios.  
+Incluye CRUD completo, relaciones entre tablas, validaciones, tests automatizados y documentación con OpenAPI (Swagger).  
+El proyecto está desplegado en Railway.
 
 ---
 
-## 🚀 Tecnologías utilizadas
+# 🚀 Tecnologías utilizadas
 
 - Node.js
 - Express.js
 - PostgreSQL
 - pg (node-postgres)
-- Jest + Supertest (testing)
 - Swagger / OpenAPI 3.0
+- Jest + Supertest (testing)
 - Railway (deploy)
+- dotenv
 
 ---
 
-## 📁 Estructura del proyecto
+# 📁 Estructura del proyecto
 
 
 src/
@@ -26,28 +27,35 @@ src/
 ├── services/
 ├── routes/
 ├── db/
+├── middlewares/
+├── utils/
+├── config/
 ├── app.js
 └── server.js
 
 tests/
 └── app.test.js
 
+setup.sql
+seed.sql
 openapi.yaml
 .env.example
 
 
 ---
 
-## ⚙️ Instalación del proyecto
+# ⚙️ Instalación del proyecto
 
-### 1. Clonar repositorio
+## 1. Clonar repositorio
 
 ```bash
 git clone https://github.com/katherine-vasquez/proyectom2_katherinevasquez.git
 cd proyectom2_katherinevasquez
+
 2. Instalar dependencias
 npm install
-3. Variables de entorno
+
+3. Configurar variables de entorno
 
 Crear archivo .env basado en .env.example:
 
@@ -56,21 +64,24 @@ DB_USER=postgres
 DB_PASSWORD=tu_password
 DB_NAME=nombre_db
 PORT=8080
+
 4. Base de datos
 
-Ejecutar scripts SQL:
+Ejecutar scripts SQL en PostgreSQL:
 
 setup.sql → creación de tablas
 seed.sql → datos iniciales
-▶️ Ejecución del proyecto
+
+5. Ejecutar el proyecto
 npm run dev
 
-Servidor corriendo en:
+Servidor disponible en:
 
 http://localhost:8080
-📘 Swagger (OpenAPI)
 
-Documentación disponible en producción:
+📘 Documentación API (Swagger / OpenAPI)
+
+La documentación está disponible en producción:
 
 👉 https://proyectom2katherinevasquez-production.up.railway.app/api-docs/
 
@@ -82,20 +93,19 @@ API desplegada en:
 
 🧪 Tests
 
-Ejecutar tests automatizados:
+Para ejecutar tests automatizados:
 
 npm test
-
-Incluye:
-
-CRUD authors
-CRUD posts
-CRUD comments
+Cobertura:
+CRUD de authors
+CRUD de posts
+CRUD de comments
 Validaciones de errores
 
-📌 Funcionalidades
+📌 Funcionalidades principales
 
 👤 Authors
+
 Crear autor
 Obtener todos
 Obtener por ID
@@ -103,38 +113,61 @@ Actualizar
 Eliminar
 
 📝 Posts
+
 CRUD completo
 Relación con authors
+Filtrado por autor
 
 💬 Comments
+
 Crear comentarios
-Obtener comentarios
+Obtener todos
 Obtener por post
+Relación con authors y posts
 
-🔐 Validaciones
-name obligatorio (authors)
+🔐 Validaciones implementadas
+
+name obligatorio en authors
 email único
-title, content, author_id obligatorios (posts)
-manejo de errores HTTP
+title, content, author_id obligatorios en posts
+post_id, author_id, content obligatorios en comments
+Manejo de errores HTTP (400, 404, 500)
 
-🧠 Arquitectura
-Routes → endpoints
-Controllers → lógica HTTP
-Services → lógica SQL
-DB → conexión PostgreSQL
+🧠 Arquitectura del proyecto
+
+El proyecto sigue arquitectura en capas:
+
+Routes → Definen endpoints
+Controllers → Manejan requests y responses
+Services → Lógica de negocio y queries SQL
+Database → Conexión PostgreSQL
+
+🧾 Base de datos
+
+Relaciones:
+
+authors → posts (1 a muchos)
+posts → comments (1 a muchos)
+authors → comments (1 a muchos)
 
 🤖 Uso de IA
 
-Se utilizó IA (ChatGPT) como apoyo para:
+Durante el desarrollo se utilizó IA (ChatGPT) como apoyo para:
 
-depuración de errores
-estructura de tests
-optimización de SQL
-revisión de arquitectura
+Depuración de errores en Express
+Corrección de errores en deployment
+Apoyo en documentación OpenAPI
 
-🏆 Estado del proyecto
+🏁 Estado del proyecto
 
 ✔ API funcional
+✔ CRUD completo
+✔ Relaciones entre tablas
 ✔ Tests pasando
 ✔ Swagger activo
 ✔ Deploy en Railway
+
+
+Repositorio de GitHub:
+
+👉 https://github.com/katherine-vasquez/proyectom2_katherinevasquez
