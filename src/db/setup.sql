@@ -28,3 +28,13 @@ CREATE TABLE posts (
  FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE
 
 );
+
+CREATE TABLE comments (
+  id SERIAL PRIMARY KEY,
+  post_id INTEGER NOT NULL,
+  author_id INTEGER NOT NULL,
+  content TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+  FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE
+);
