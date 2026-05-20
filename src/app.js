@@ -11,7 +11,6 @@ const commentsRouter = require("./routes/commentsRouter");
 
 const errorHandler = require("./middlewares/errorhandler");
 
-console.log("TYPE OF errorHandler:", typeof errorHandler);
 
 const app = express();
 
