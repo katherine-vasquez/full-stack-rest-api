@@ -2,10 +2,11 @@ const swaggerDocument = {
   openapi: "3.0.0",
 
   info: {
-    title: "Blog API",
-    version: "1.0.0",
-    description: "API REST con Express y PostgreSQL"
-  },
+  title: "Full Stack REST API",
+  version: "1.0.0",
+  description:
+    "REST API built with Node.js, Express and PostgreSQL featuring CRUD operations, relational database design, OpenAPI documentation, automated testing and cloud deployment."
+},
 
   servers: [
     {
