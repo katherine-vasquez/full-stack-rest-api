@@ -1,7 +1,5 @@
 const pool = require("../db/config");
 
-console.log("commentsServices LOADED");
-
 // =========================
 // GET ALL COMMENTS
 // =========================
@@ -81,9 +79,3 @@ module.exports = {
   getCommentsByPost,
   createComment
 };
-
-console.log("EXPORT CHECK:", {
-  getAllComments,
-  getCommentsByPost,
-  createComment
-});

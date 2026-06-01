@@ -9,7 +9,6 @@ const {
   deleteAuthor
 } = require("../controllers/authorsController");
 
-console.log("createAuthor:", createAuthor);
 
 // GET /authors
 router.get("/", getAllAuthors);

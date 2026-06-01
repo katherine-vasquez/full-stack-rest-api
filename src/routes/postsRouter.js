@@ -11,14 +11,6 @@ const {
   deletePost
 } = require("../controllers/postsController");
 
-console.log({
-  getAllPosts,
-  getPostById,
-  getPostsByAuthor,
-  createPost,
-  updatePost,
-  deletePost
-});
 
 // GET /posts
 router.get("/", getAllPosts);

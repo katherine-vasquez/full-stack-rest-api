@@ -1,9 +1,9 @@
 openapi: 3.0.0
 
 info:
-  title: Blog API
+  title: Full Stack REST API
   version: 1.0.0
-  description: API REST con Express y PostgreSQL
+  description: REST API built with Node.js, Express and PostgreSQL featuring CRUD operations, relational database design, OpenAPI documentation, automated testing and cloud deployment.
 
 servers:
   - url: https://proyectom2katherinevasquez-production.up.railway.app

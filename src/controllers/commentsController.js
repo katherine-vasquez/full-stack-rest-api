@@ -1,5 +1,4 @@
 const commentsService = require("../services/commentsServices");
-console.log("SERVICE KEYS:", Object.keys(commentsService));
 
 // GET ALL COMMENTS
 const getAllComments = async (req, res, next) => {
