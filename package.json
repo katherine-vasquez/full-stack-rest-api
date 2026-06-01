@@ -1,7 +1,7 @@
 {
-  "name": "proyectom2_katherinevasquez",
+  "name": "fullstack-rest-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Production-ready REST API built with Node.js, Express and PostgreSQL",
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
