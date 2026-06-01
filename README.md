@@ -1,20 +1,30 @@
-📌 Blog API – Node.js + Express + PostgreSQL
+# 🚀 Full Stack REST API
 
-API REST desarrollada con Node.js, Express y PostgreSQL que simula un sistema de blog con autores, posts y comentarios.
-Incluye CRUD completo, relaciones entre tablas, validaciones, tests automatizados y documentación con OpenAPI (Swagger).
-El proyecto está desplegado en Railway.
+Node.js • Express • PostgreSQL • Swagger • Railway
 
-🚀 Tecnologías utilizadas
-Node.js
-Express.js
-PostgreSQL
-pg (node-postgres)
-Swagger / OpenAPI 3.0
-Jest + Supertest (testing)
-Railway (deploy)
-dotenv
+Production-ready REST API built with Node.js, Express and PostgreSQL.
 
-📁 Estructura del proyecto
+This project demonstrates backend development best practices, including relational database design, RESTful architecture, CRUD operations, automated testing, OpenAPI documentation, and cloud deployment.
+
+---
+
+# 🚀 Technologies Used
+
+- Node.js
+- Express.js
+- PostgreSQL
+- pg (node-postgres)
+- Swagger / OpenAPI 3.0
+- Jest
+- Supertest
+- Railway
+- dotenv
+
+---
+
+# 📁 Project Structure
+
+```text
 src/
 ├── controllers/
 ├── services/
@@ -33,164 +43,299 @@ setup.sql
 seed.sql
 openapi.yaml
 .env.example
+```
 
-⚙️ Instalación del proyecto
+---
 
-1. Clonar repositorio
+# ✨ Features
+
+## Authors
+
+- Create author
+- Get all authors
+- Get author by ID
+- Update author
+- Delete author
+
+## Posts
+
+- Create post
+- Get all posts
+- Get post by ID
+- Update post
+- Delete post
+- Filter posts by author
+
+## Comments
+
+- Create comment
+- Get all comments
+- Get comments by post
+- Author and post relationships
+
+---
+
+# 🧾 Database Design
+
+### Authors
+
+- id
+- name
+- email
+- bio
+- created_at
+
+### Posts
+
+- id
+- author_id
+- title
+- content
+- published
+- created_at
+
+### Comments
+
+- id
+- post_id
+- author_id
+- content
+- created_at
+
+---
+
+# 🔗 Entity Relationships
+
+```text
+Authors (1) ────< Posts (Many)
+
+Authors (1) ────< Comments (Many)
+
+Posts (1) ────< Comments (Many)
+```
+
+Foreign keys use referential integrity rules and cascade deletion where appropriate.
+
+---
+
+# 🔐 Validations
+
+### Authors
+
+- name is required
+- email is required
+- email must be unique
+
+### Posts
+
+- title is required
+- content is required
+- author_id is required
+
+### Comments
+
+- post_id is required
+- author_id is required
+- content is required
+
+---
+
+# 📡 HTTP Status Codes
+
+The API returns appropriate HTTP responses:
+
+- 200 OK
+- 201 Created
+- 204 No Content
+- 400 Bad Request
+- 404 Not Found
+- 500 Internal Server Error
+
+---
+
+# ⚙️ Local Installation
+
+## 1. Clone Repository
+
+```bash
 git clone https://github.com/katherine-vasquez/proyectom2_katherinevasquez.git
 cd proyectom2_katherinevasquez
+```
 
-2. Instalar dependencias
+## 2. Install Dependencies
+
+```bash
 npm install
+```
 
-3. Configurar variables de entorno
+## 3. Configure Environment Variables
 
-Crear archivo .env basado en .env.example:
+Create a `.env` file based on `.env.example`
 
+```env
 DB_HOST=localhost
 DB_USER=postgres
-DB_PASSWORD=tu_password
-DB_NAME=nombre_db
+DB_PASSWORD=your_password
+DB_NAME=your_database
 PORT=8080
+```
 
-4. Base de datos
+## 4. Create Database
 
-Ejecutar scripts SQL en PostgreSQL:
+Run:
 
-setup.sql → creación de tablas
-seed.sql → datos iniciales
+```sql
+setup.sql
+```
 
-5. Ejecutar el proyecto
+Then populate sample data:
+
+```sql
+seed.sql
+```
+
+## 5. Start Development Server
+
+```bash
 npm run dev
+```
 
-Servidor disponible en:
+Server:
 
+```text
 http://localhost:8080
+```
 
-📘 Documentación API (Swagger / OpenAPI)
+---
 
-La documentación está disponible en producción:
+# 🧪 Automated Testing
 
-👉 https://proyectom2katherinevasquez-production.up.railway.app/api-docs/
+Run tests:
 
-🌐 Deploy en Railway
-
-API desplegada en:
-
-👉 https://proyectom2katherinevasquez-production.up.railway.app
-
-🧪 Tests
-
-Para ejecutar tests automatizados:
-
+```bash
 npm test
+```
 
-Cobertura:
-CRUD de authors
-CRUD de posts
-CRUD de comments
+Current coverage includes:
 
-Validaciones de errores
+- Authors CRUD
+- Posts CRUD
+- Comments CRUD
+- Validation handling
+- Error scenarios
 
-📌 Funcionalidades principales
+---
 
-👤 Authors
-Crear autor
-Obtener todos
-Obtener por ID
-Actualizar
-Eliminar
+# 📘 OpenAPI Documentation
 
-📝 Posts
+The project includes a complete OpenAPI specification file:
 
-CRUD completo
-Relación con authors
-Filtrado por autor
-
-💬 Comments
-
-Crear comentarios
-Obtener todos
-Obtener por post
-Relación con authors y posts
-
-🔐 Validaciones implementadas
-
-name obligatorio en authors
-email único
-title, content, author_id obligatorios en posts
-post_id, author_id, content obligatorios en comments
-Manejo de errores HTTP (400, 404, 500)
-
-🧠 Arquitectura del proyecto
-
-El proyecto sigue arquitectura en capas:
-
-Routes → Definen endpoints
-Controllers → Manejan requests y responses
-Services → Lógica de negocio y queries SQL
-Database → Conexión PostgreSQL
-
-🧾 Base de datos
-
-Relaciones:
-
-authors → posts (1 a muchos)
-posts → comments (1 a muchos)
-authors → comments (1 a muchos)
-
-🤖 Uso de IA
-
-Durante el desarrollo del proyecto se utilizó IA (ChatGPT) como herramienta de apoyo para aprendizaje, depuración de errores y mejora de la documentación del sistema.
-
-📘 Apoyo en documentación del proyecto
-
-la IA ayudó a estructurar y mejorar el README del proyecto para cumplir con los requisitos de entrega y presentación del repositorio.
-
-📸 Evidencia:
-![IA README](./screenshots/IAPHOTO1.jpg)
-
-
-🔧 Apoyo en depuración de errores
-
-La IA ayudó a identificar y corregir errores en el funcionamiento de la API, mejorando la estabilidad del proyecto.
-
-📸 Evidencia:
-![IA debugging](./screenshots/IAPHOTO2.jpg)
-
-
-📘 OpenAPI (Documentación de la API)
-
-El proyecto incluye un archivo openapi.yaml que describe completamente la API REST desarrollada (authors, posts y comments).
-
-Este archivo documenta:
-
-Endpoints disponibles
-Métodos HTTP (GET, POST, PUT, DELETE)
-Parámetros de ruta y request bodies
-Respuestas HTTP esperadas (200, 201, 204, 404, 500)
-📍 Ubicación
+```text
 openapi.yaml
-📊 Cobertura de la API
-Authors CRUD completo
-Posts CRUD completo
-Comments (creación y consultas por post)
-Relaciones entre entidades (authors → posts → comments)
-📘 Swagger UI (Documentación interactiva)
+```
 
-La API también cuenta con documentación interactiva usando Swagger UI:
+Documented features:
 
-👉 https://proyectom2katherinevasquez-production.up.railway.app/api-docs/
+- Endpoints
+- Request bodies
+- Path parameters
+- Response schemas
+- HTTP status codes
 
-🏁 Estado del proyecto
+---
 
-✔ API funcional
-✔ CRUD completo
-✔ Relaciones entre tablas
-✔ Tests pasando
-✔ Swagger activo
-✔ Deploy en Railway
+# 📖 Interactive Swagger Documentation
 
-📦 Repositorio
+Available in production:
 
-👉 https://github.com/katherine-vasquez/proyectom2_katherinevasquez
+https://proyectom2katherinevasquez-production.up.railway.app/api-docs/
+
+Swagger UI allows testing all endpoints directly from the browser.
+
+---
+
+# ☁️ Deployment
+
+Production deployment hosted on Railway:
+
+https://proyectom2katherinevasquez-production.up.railway.app
+
+Deployment includes:
+
+- Node.js API
+- PostgreSQL database
+- Environment variables
+- Swagger documentation
+
+---
+
+# 🏗️ Architecture
+
+The application follows a layered architecture:
+
+```text
+Routes
+   ↓
+Controllers
+   ↓
+Services
+   ↓
+PostgreSQL Database
+```
+
+### Responsibilities
+
+**Routes**
+- Define API endpoints
+
+**Controllers**
+- Handle requests and responses
+
+**Services**
+- Business logic and SQL queries
+
+**Database**
+- Data persistence and relationships
+
+---
+
+# 🤖 AI-Assisted Development
+
+AI tools were used as development assistants for:
+
+- Documentation improvements
+- Error debugging
+- Code review support
+- API development guidance
+
+All implementation, testing, validation, deployment, and project integration were completed and verified within the development workflow.
+
+---
+
+# ✅ Project Status
+
+- REST API completed
+- PostgreSQL integration completed
+- CRUD operations completed
+- Entity relationships implemented
+- Comments feature implemented
+- Automated tests passing
+- OpenAPI documentation completed
+- Swagger UI deployed
+- Railway deployment completed
+
+---
+
+# 📦 Repository
+
+GitHub Repository:
+
+https://github.com/katherine-vasquez/proyectom2_katherinevasquez
+
+---
+
+# 👩‍💻 Author
+
+Katherine Vasquez
+
+Backend Development • Full Stack Development • API Design • Database Systems
