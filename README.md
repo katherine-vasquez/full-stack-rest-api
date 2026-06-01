@@ -158,8 +158,8 @@ The API returns appropriate HTTP responses:
 ## 1. Clone Repository
 
 ```bash
-git clone https://github.com/katherine-vasquez/proyectom2_katherinevasquez.git
-cd proyectom2_katherinevasquez
+git clone https://github.com/katherine-vasquez/full-stack-rest-api.git
+cd full-stack-rest-api
 ```
 
 ## 2. Install Dependencies
@@ -330,7 +330,7 @@ All implementation, testing, validation, deployment, and project integration wer
 
 GitHub Repository:
 
-https://github.com/katherine-vasquez/proyectom2_katherinevasquez
+https://github.com/katherine-vasquez/full-stack-rest-api
 
 ---
 
@@ -338,4 +338,4 @@ https://github.com/katherine-vasquez/proyectom2_katherinevasquez
 
 Katherine Vasquez
 
-Backend Development • Full Stack Development • API Design • Database Systems
+Software Developer in Training | Full Stack Developer in Training | Backend Development | API Design | PostgreSQL
